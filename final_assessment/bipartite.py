@@ -19,9 +19,10 @@ def bipartite(G):
 		checked[node] = side
 		for neighbor in G[node]:
 			_iter_check(neighbor, not side)
-
-	for node in G:
-		_iter_check(node, True)
+# to prevent running for all the node, if we have already checked all the nodes, it does not check the other nodes again
+	if set(checked.keys())!=set(G.keys()):
+		for node in G:
+			_iter_check(node, True)
 
 	def _valid(subset):
 		for node in subset:
